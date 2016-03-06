@@ -129,8 +129,3 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 
 	}
 }
-
-/*
- * verifier les id si ils sont vides affiche "remplir : id"
- * mettre des icones a la place du texte
- */
