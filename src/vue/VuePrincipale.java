@@ -1,10 +1,14 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +28,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btCantine = new JButton("Cantine");
 	private JButton btCentreLoisir = new JButton("Centre de loisirs");
 	private JButton btQuitter = new JButton("quitter");
+	private Image img;
 
 	// construction des objets du panel Profil
 
@@ -31,7 +36,17 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	// construction des objets du panel CentreLoisirs
 
-	public VuePrincipale() {
+	public VuePrincipale(String img) {
+		this(new ImageIcon(img).getImage());
+	}
+
+	public VuePrincipale(Image img) {
+		// essai de mettre l'image "background" sans succes 
+		this.img = img;
+		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+		setLayout(null);
+
+		this.setVisible(true);
 
 		this.setTitle("Profil utilisateur");
 		this.setBounds(200, 200, 700, 400);
@@ -40,7 +55,8 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel menu
 		this.panelMenu.setBounds(10, 10, 100, 380);
-		this.panelMenu.setBackground(Color.white);
+		this.panelMenu.setBackground(Color.white); // temporaire, image à
+													// intégré
 		this.panelMenu.setLayout(new GridLayout(7, 1));
 		this.panelMenu.add(new JLabel("menu principal"));
 		this.panelMenu.add(this.btProfil);
@@ -50,7 +66,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelMenu.add(new JLabel(""));
 		this.panelMenu.setVisible(true);
 		this.add(this.panelMenu);
-		
+
 		// ___________________________________________________________//
 
 		// bouton cliquable du panel menu
@@ -68,14 +84,16 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel Profil
 		this.panelProfil.setBounds(140, 10, 350, 400);
-		this.panelProfil.setBackground(Color.cyan); // temporaire, image à intégré 
+		this.panelProfil.setBackground(Color.cyan); // temporaire, image à
+													// intégré
 		this.panelProfil.setLayout(null);
 		this.panelProfil.setVisible(false);
 		this.add(this.panelProfil);
 
 		// construction du panel Cantine
 		this.panelCantine.setBounds(140, 10, 500, 340);
-		this.panelCantine.setBackground(Color.gray); // temporaire, image à intégré 
+		this.panelCantine.setBackground(Color.gray); // temporaire, image à
+														// intégré
 		this.panelCantine.setLayout(null);
 		this.panelCantine.setLayout(null);
 		this.panelCantine.setVisible(false);
@@ -83,13 +101,19 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel CentreLoisirs
 		this.panelCentreLoisirs.setBounds(140, 10, 500, 340);
-		this.panelCentreLoisirs.setBackground(Color.YELLOW); // temporaire, image à intégré 
+		this.panelCentreLoisirs.setBackground(Color.YELLOW); // temporaire,
+																// image à
+																// intégré
 		this.panelCentreLoisirs.setLayout(null);
 		this.panelCentreLoisirs.setVisible(false);
 		this.add(this.panelCentreLoisirs);
 
 		this.setVisible(true);
 
+	}
+	// image
+	public void paintComponent(Graphics g) {
+		g.drawImage(img, 0, 0, null);
 	}
 
 	@Override
@@ -119,6 +143,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			}
 
 		}
-	}
 
+	}
 }
