@@ -1,19 +1,19 @@
+// La VuePrincipale permet d'afficher ce que l'on édite dans VueProfil
+
 package vue;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
 
@@ -28,23 +28,24 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btCantine = new JButton("Cantine");
 	private JButton btCentreLoisir = new JButton("Centre de loisirs");
 	private JButton btQuitter = new JButton("quitter");
-	private Image img;
+	
 
 	// construction des objets du panel Profil
+	
+	private JTextField tfDate = new JTextField();
+	private JTextField tfTarif = new JTextField();
+	private JTextField tfNbrEnfant = new JTextField();
+	private JTextField tfEtablissement = new JTextField();
+	private JButton btAnnuler = new JButton("annuler");
+	private JButton btValider = new JButton("enregistrer");
+	
+
 
 	// construction des objets du panel Cantine
 
 	// construction des objets du panel CentreLoisirs
 
-	public VuePrincipale(String img) {
-		this(new ImageIcon(img).getImage());
-	}
-
-	public VuePrincipale(Image img) {
-		// essai de mettre l'image "background" sans succes 
-		this.img = img;
-		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-		setLayout(null);
+	public VuePrincipale() {
 
 		this.setVisible(true);
 
@@ -74,7 +75,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.btCantine.addActionListener(this);
 		this.btCentreLoisir.addActionListener(this);
 		this.btQuitter.addActionListener(this);
+
 		// bouton cliquable du panel Profil
+		this.btValider.addActionListener(this);
+		this.btAnnuler.addActionListener(this);
 
 		// bouton cliquable du panel Cantine
 
@@ -86,6 +90,28 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.setBounds(140, 10, 350, 400);
 		this.panelProfil.setBackground(Color.cyan); // temporaire, image à
 													// intégré
+
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Date"));
+		this.panelProfil.add(this.tfDate);
+
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Etablissement"));
+		this.panelProfil.add(this.tfEtablissement);
+
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Nombre d'enfant"));
+		this.panelProfil.add(this.tfNbrEnfant);
+
+		this.panelProfil.add(new JLabel("Tarif"));
+		this.panelProfil.add(this.tfTarif);
+
+		this.panelProfil.add(new JLabel(""));
+		this.panelProfil.add(new JLabel(""));
+
+		this.panelProfil.add(this.btValider);
+		this.panelProfil.add(this.btAnnuler);
+
 		this.panelProfil.setLayout(null);
 		this.panelProfil.setVisible(false);
 		this.add(this.panelProfil);
@@ -110,10 +136,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.setVisible(true);
 
-	}
-	// image
-	public void paintComponent(Graphics g) {
-		g.drawImage(img, 0, 0, null);
 	}
 
 	@Override
