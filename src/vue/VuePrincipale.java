@@ -28,10 +28,9 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btCantine = new JButton("Cantine");
 	private JButton btCentreLoisir = new JButton("Centre de loisirs");
 	private JButton btQuitter = new JButton("quitter");
-	
 
 	// construction des objets du panel Profil
-	
+
 	private JTextField tfNom = new JTextField();
 	private JTextField tfPrenom = new JTextField();
 	private JTextField tfAge = new JTextField();
@@ -40,12 +39,26 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JTextField tfAdresse = new JTextField();
 	private JButton btAnnuler = new JButton("annuler");
 	private JButton btValider = new JButton("enregistrer");
-	
-
 
 	// construction des objets du panel Cantine
+	
+	private JTextField tfDate = new JTextField();
+	private JTextField tfTarif = new JTextField();
+	private JTextField tfNbrEnfants = new JTextField();
+	private JTextField tfEtablissement = new JTextField();
+	private JButton btAnnulerC = new JButton("annuler");
+	private JButton btValiderC = new JButton("Valider");
 
 	// construction des objets du panel CentreLoisirs
+	
+	private JTextField tfDateCL = new JTextField();
+	private JTextField tfTarifCL = new JTextField();
+	private JTextField tfNbrEnfantsCL = new JTextField();
+	private JTextField tfEtablissementCL = new JTextField();
+	private JTextField tfRegion = new JTextField();
+	private JTextField tfCapacite = new JTextField();
+	private JButton btAnnulerCL = new JButton("annuler");
+	private JButton btValiderCL = new JButton("Valider");
 
 	public VuePrincipale() {
 
@@ -83,8 +96,13 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.btAnnuler.addActionListener(this);
 
 		// bouton cliquable du panel Cantine
+		this.btValiderC.addActionListener(this);
+		this.btAnnulerC.addActionListener(this);
 
 		// bouton cliquable du panel CentreLoisirs
+		
+		this.btValiderCL.addActionListener(this);
+		this.btAnnulerCL.addActionListener(this);
 
 		// ___________________________________________________________//
 
@@ -99,20 +117,19 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelProfil.add(new JLabel("Prenom :"));
 		this.panelProfil.add(this.tfPrenom);
-		
+
 		this.panelProfil.add(new JLabel("Age :"));
 		this.panelProfil.add(this.tfAge);
-		
+
 		this.panelProfil.add(new JLabel("Tel :"));
 		this.panelProfil.add(this.tfTel);
 
 		this.panelProfil.add(new JLabel("Nombre d'enfant"));
 		this.panelProfil.add(this.tfNbrEnfant);
-		
+
 		this.panelProfil.add(new JLabel("Adresse :"));
 		this.panelProfil.add(this.tfAdresse);
 
-		
 		this.panelProfil.add(new JLabel(""));
 		this.panelProfil.add(new JLabel(""));
 
@@ -126,8 +143,26 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCantine.setBounds(140, 10, 500, 340);
 		this.panelCantine.setBackground(Color.gray); // temporaire, image à
 														// intégré
-		this.panelCantine.setLayout(null);
-		this.panelCantine.setLayout(null);
+		
+		this.panelCantine.setLayout(new GridLayout(9, 2));
+		this.panelCantine.add(new JLabel("Date :"));
+		this.panelCantine.add(this.tfDate);
+
+		this.panelCantine.add(new JLabel("Tarif :"));
+		this.panelCantine.add(this.tfTarif);
+
+		this.panelCantine.add(new JLabel("Nombre d'enfants :"));
+		this.panelCantine.add(this.tfNbrEnfants);
+
+		this.panelCantine.add(new JLabel("Etablissement :"));
+		this.panelCantine.add(this.tfEtablissement);
+
+		this.panelCantine.add(new JLabel(""));
+		this.panelCantine.add(new JLabel(""));
+
+		this.panelCantine.add(this.btValiderC);
+		this.panelCantine.add(this.btAnnulerC);
+		
 		this.panelCantine.setVisible(false);
 		this.add(this.panelCantine);
 
@@ -136,11 +171,36 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCentreLoisirs.setBackground(Color.YELLOW); // temporaire,
 																// image à
 																// intégré
-		this.panelCentreLoisirs.setLayout(null);
+		this.panelCentreLoisirs.setLayout(new GridLayout(9, 2));
+		this.panelCentreLoisirs.add(new JLabel("Etablissement :"));
+		this.panelCentreLoisirs.add(this.tfEtablissementCL);
+		
+		this.panelCentreLoisirs.add(new JLabel("Date :"));
+		this.panelCentreLoisirs.add(this.tfDateCL);
+		
+		this.panelCentreLoisirs.add(new JLabel("Nombre d'enfants :"));
+		this.panelCentreLoisirs.add(this.tfNbrEnfantsCL);
+		
+		this.panelCentreLoisirs.add(new JLabel("Capacite :"));
+		this.panelCentreLoisirs.add(this.tfCapacite);
+		
+		this.panelCentreLoisirs.add(new JLabel("Region :"));
+		this.panelCentreLoisirs.add(this.tfRegion);
+
+		this.panelCentreLoisirs.add(new JLabel("Tarif :"));
+		this.panelCentreLoisirs.add(this.tfTarifCL);
+
+
+		
+
+		this.panelCentreLoisirs.add(new JLabel(""));
+		this.panelCentreLoisirs.add(new JLabel(""));
+
+		this.panelCentreLoisirs.add(this.btValiderC);
+		this.panelCentreLoisirs.add(this.btAnnulerC);
+		
 		this.panelCentreLoisirs.setVisible(false);
 		this.add(this.panelCentreLoisirs);
-
-		this.setVisible(true);
 
 	}
 
