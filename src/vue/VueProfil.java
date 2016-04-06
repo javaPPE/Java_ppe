@@ -21,10 +21,13 @@ import modele.Modele;
 public class VueProfil extends JFrame implements ActionListener {
 	
 	private static Profil unProfil = null;
-	private JTextField tfDate = new JTextField();
-	private JTextField tfTarif = new JTextField();
+	private JTextField tfNom = new JTextField();
+	private JTextField tfPrenom = new JTextField();
+	private JTextField tfAge = new JTextField();
+	private JTextField tfTel = new JTextField();
 	private JTextField tfNbrEnfant = new JTextField();
-	private JTextField tfEtablissement = new JTextField();
+	private JTextField tfAdresse = new JTextField();
+	
 	
 	private JButton btAnnuler = new JButton("annuler");
 	private JButton btValider = new JButton("valider");
@@ -42,17 +45,23 @@ public class VueProfil extends JFrame implements ActionListener {
 		this.unPannel.setBackground(Color.cyan);
 		this.unPannel.setLayout(new GridLayout(6, 2));
 
-		this.unPannel.add(new JLabel("Date :"));
-		this.unPannel.add(this.tfDate);
+		this.unPannel.add(new JLabel("Nom :"));
+		this.unPannel.add(this.tfNom);
 
-		this.unPannel.add(new JLabel("Tarif :"));
-		this.unPannel.add(this.tfTarif);
+		this.unPannel.add(new JLabel("Prenom :"));
+		this.unPannel.add(this.tfPrenom);
+		
+		this.unPannel.add(new JLabel("Age :"));
+		this.unPannel.add(this.tfAge);
+		
+		this.unPannel.add(new JLabel("Tel :"));
+		this.unPannel.add(this.tfTel);
 
 		this.unPannel.add(new JLabel("Nombre d'enfant :"));
 		this.unPannel.add(this.tfNbrEnfant);
 
-		this.unPannel.add(new JLabel("Etablissement :"));
-		this.unPannel.add(this.tfEtablissement);
+		this.unPannel.add(new JLabel("Adresse :"));
+		this.unPannel.add(this.tfAdresse);
 
 		this.unPannel.add(this.btValider);
 		this.unPannel.add(this.btAnnuler);
@@ -60,10 +69,13 @@ public class VueProfil extends JFrame implements ActionListener {
 		this.unPannel.setVisible(true);
 
 		// remplissage des textfields
-		this.tfDate.setText(unProf.getDate() + "");
-		this.tfTarif.setText(unProf.getTarif() + "");
+		this.tfNom.setText(unProf.getNom() + "");
+		this.tfPrenom.setText(unProf.getPrenom() + "");
+		this.tfAge.setText(unProf.getAge() + "");
+		this.tfTel.setText(unProf.getTel() + "");
 		this.tfNbrEnfant.setText(unProf.getNbrEnfant() + "");
-		this.tfEtablissement.setText(unProf.getEtablissement());
+		this.tfAdresse.setText(unProf.getAdresse() + "");
+		
 
 		// bouton cliquable
 		this.btValider.addActionListener(this);

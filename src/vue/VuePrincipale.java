@@ -32,10 +32,12 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	// construction des objets du panel Profil
 	
-	private JTextField tfDate = new JTextField();
-	private JTextField tfTarif = new JTextField();
+	private JTextField tfNom = new JTextField();
+	private JTextField tfPrenom = new JTextField();
+	private JTextField tfAge = new JTextField();
+	private JTextField tfTel = new JTextField();
 	private JTextField tfNbrEnfant = new JTextField();
-	private JTextField tfEtablissement = new JTextField();
+	private JTextField tfAdresse = new JTextField();
 	private JButton btAnnuler = new JButton("annuler");
 	private JButton btValider = new JButton("enregistrer");
 	
@@ -92,19 +94,31 @@ public class VuePrincipale extends JFrame implements ActionListener {
 													// intégré
 
 		this.panelProfil.setLayout(new GridLayout(7, 2));
-		this.panelProfil.add(new JLabel("Date"));
-		this.panelProfil.add(this.tfDate);
+		this.panelProfil.add(new JLabel("Nom :"));
+		this.panelProfil.add(this.tfNom);
 
 		this.panelProfil.setLayout(new GridLayout(7, 2));
-		this.panelProfil.add(new JLabel("Etablissement"));
-		this.panelProfil.add(this.tfEtablissement);
+		this.panelProfil.add(new JLabel("Prenom :"));
+		this.panelProfil.add(this.tfPrenom);
+		
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Age :"));
+		this.panelProfil.add(this.tfAge);
+		
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Tel :"));
+		this.panelProfil.add(this.tfTel);
 
 		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Nombre d'enfant"));
 		this.panelProfil.add(this.tfNbrEnfant);
+		
+		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.add(new JLabel("Adresse :"));
+		this.panelProfil.add(this.tfAdresse);
 
-		this.panelProfil.add(new JLabel("Tarif"));
-		this.panelProfil.add(this.tfTarif);
+
+		
 
 		this.panelProfil.add(new JLabel(""));
 		this.panelProfil.add(new JLabel(""));
