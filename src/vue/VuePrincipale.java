@@ -117,9 +117,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.add(new JLabel("Adresse :"));
 		this.panelProfil.add(this.tfAdresse);
 
-
 		
-
 		this.panelProfil.add(new JLabel(""));
 		this.panelProfil.add(new JLabel(""));
 

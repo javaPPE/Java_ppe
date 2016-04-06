@@ -11,12 +11,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controleur.Profil;
-import modele.Modele;
 
 public class VueProfil extends JFrame implements ActionListener {
 	
@@ -27,8 +25,7 @@ public class VueProfil extends JFrame implements ActionListener {
 	private JTextField tfTel = new JTextField();
 	private JTextField tfNbrEnfant = new JTextField();
 	private JTextField tfAdresse = new JTextField();
-	
-	
+		
 	private JButton btAnnuler = new JButton("annuler");
 	private JButton btValider = new JButton("valider");
 	private JPanel unPannel = new JPanel();
@@ -50,10 +47,10 @@ public class VueProfil extends JFrame implements ActionListener {
 
 		this.unPannel.add(new JLabel("Prenom :"));
 		this.unPannel.add(this.tfPrenom);
-		
+
 		this.unPannel.add(new JLabel("Age :"));
 		this.unPannel.add(this.tfAge);
-		
+
 		this.unPannel.add(new JLabel("Tel :"));
 		this.unPannel.add(this.tfTel);
 
@@ -75,13 +72,12 @@ public class VueProfil extends JFrame implements ActionListener {
 		this.tfTel.setText(unProf.getTel() + "");
 		this.tfNbrEnfant.setText(unProf.getNbrEnfant() + "");
 		this.tfAdresse.setText(unProf.getAdresse() + "");
-		
 
 		// bouton cliquable
 		this.btValider.addActionListener(this);
 		this.btAnnuler.addActionListener(this);
 
-		// renseigner le produit
+		// renseigner le profil
 		unProf = unProf;
 
 		// attribut de la classe recoit le parametre recu dans le constructeur
@@ -95,15 +91,17 @@ public class VueProfil extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		/*if (e.getSource() == this.btAnnuler) {
+	/*	if (e.getSource() == this.btAnnuler) {
 			this.dispose();
 		} else if (e.getSource() == this.btValider) {
-			int date = Integer.parseInt(this.tfDate.getText());
+			int tel = Integer.parseInt(this.tfTel.getText());
 			int nbrEnfant = Integer.parseInt(this.tfNbrEnfant.getText());
-			float tarif = Float.parseFloat(this.tfTarif.getText());
-			String etablissement = this.tfEtablissement.getText();
+			int Age = Integer.parseInt(this.tfAge.getText());
+			String Nom = this.tfNom.getText();
+			String Prenom = this.tfPrenom.getText();
+			String Adresse = this.tfAdresse.getText();
 			
-			unProfil = new Profil(date, nbrEnfant, tarif, etablissement);
+			unProfil = new Profil(tel, nbrEnfant, Age , Nom, Prenom, Adresse);
 
 			// appel le modele pour la modif
 			Modele.updateProduit(unProfil);

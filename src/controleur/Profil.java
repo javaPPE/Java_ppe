@@ -21,6 +21,11 @@ public class Profil {
 		this.tel = tel;
 		this.age = age;
 	}
+
+	public String toString() {
+		return this.nom + " - " + this.prenom + " - " + this.adresse + " - " + this.nbrEnfant + " - " + this.tel + " - "
+				+ this.age;
+	}
 	
 	public String getNom() {
 		return nom;
@@ -70,9 +75,7 @@ public class Profil {
 		this.age = age;
 	}
 
-	public String toString() {
-		return this.nom + " - " + this.prenom + " - " + this.adresse + " - " + this.nbrEnfant+ " - " + this.tel+ " - " + this.age;
-	}
+	
 
 	
 	
