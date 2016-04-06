@@ -190,14 +190,11 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCentreLoisirs.add(new JLabel("Tarif :"));
 		this.panelCentreLoisirs.add(this.tfTarifCL);
 
-
-		
-
 		this.panelCentreLoisirs.add(new JLabel(""));
 		this.panelCentreLoisirs.add(new JLabel(""));
 
-		this.panelCentreLoisirs.add(this.btValiderC);
-		this.panelCentreLoisirs.add(this.btAnnulerC);
+		this.panelCentreLoisirs.add(this.btValiderCL);
+		this.panelCentreLoisirs.add(this.btAnnulerCL);
 		
 		this.panelCentreLoisirs.setVisible(false);
 		this.add(this.panelCentreLoisirs);
