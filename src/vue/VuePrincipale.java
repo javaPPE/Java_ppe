@@ -93,27 +93,22 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.setBackground(Color.cyan); // temporaire, image à
 													// intégré
 
-		this.panelProfil.setLayout(new GridLayout(7, 2));
+		this.panelProfil.setLayout(new GridLayout(9, 2));
 		this.panelProfil.add(new JLabel("Nom :"));
 		this.panelProfil.add(this.tfNom);
 
-		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Prenom :"));
 		this.panelProfil.add(this.tfPrenom);
 		
-		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Age :"));
 		this.panelProfil.add(this.tfAge);
 		
-		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Tel :"));
 		this.panelProfil.add(this.tfTel);
 
-		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Nombre d'enfant"));
 		this.panelProfil.add(this.tfNbrEnfant);
 		
-		this.panelProfil.setLayout(new GridLayout(7, 2));
 		this.panelProfil.add(new JLabel("Adresse :"));
 		this.panelProfil.add(this.tfAdresse);
 
@@ -124,7 +119,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.add(this.btValider);
 		this.panelProfil.add(this.btAnnuler);
 
-		this.panelProfil.setLayout(null);
 		this.panelProfil.setVisible(false);
 		this.add(this.panelProfil);
 
