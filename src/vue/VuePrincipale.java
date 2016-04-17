@@ -3,11 +3,12 @@
 package vue;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
-
+	
 	private JPanel panelMenu = new JPanel();
 	private JPanel panelProfil = new JPanel();
 	private JPanel panelCantine = new JPanel();
@@ -61,6 +62,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btValiderCL = new JButton("Valider");
 
 	public VuePrincipale() {
+		super();
 
 		this.setVisible(true);
 
@@ -107,9 +109,13 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// ___________________________________________________________//
 
 		// construction du panel Profil
+		
+		JLabel uneImage = new JLabel(new ImageIcon("image/Background.png"));
+		uneImage.setBounds(140, 10, 350, 400);
+		this.add(uneImage);
+		
 		this.panelProfil.setBounds(140, 10, 350, 400);
-		this.panelProfil.setBackground(Color.cyan); // temporaire, image à
-													// intégré
+		
 
 		this.panelProfil.setLayout(new GridLayout(9, 2));
 		this.panelProfil.add(new JLabel("Nom :"));
@@ -136,6 +142,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.add(this.btValider);
 		this.panelProfil.add(this.btAnnuler);
 
+	
+		
+		
+		
 		this.panelProfil.setVisible(false);
 		this.add(this.panelProfil);
 
@@ -230,4 +240,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		}
 
 	}
+	
+	
 }
