@@ -3,11 +3,15 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,11 +21,45 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
-	
+
 	private JPanel panelMenu = new JPanel();
-	private JPanel panelProfil = new JPanel();
-	private JPanel panelCantine = new JPanel();
-	private JPanel panelCentreLoisirs = new JPanel();
+
+	// permet d'avoir une image en background du panel profil
+	private JPanel panelProfil = new JPanel()
+
+	{
+		Image img = new ImageIcon("image/Background.png").getImage();
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(img, 0, 0, null);
+		}
+	};
+
+	// permet d'avoir une image en background du panel cantine
+
+	private JPanel panelCantine = new JPanel() {
+		Image img = new ImageIcon("image/Background.png").getImage();
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(img, 0, 0, null);
+		}
+	};
+
+	// permet d'avoir une image en background du panel centre de loisir
+
+	private JPanel panelCentreLoisirs = new JPanel() {
+		Image img = new ImageIcon("image/Background.png").getImage();
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(img, 0, 0, null);
+		}
+	};
 
 	// construction des boutons
 
@@ -42,7 +80,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btValider = new JButton("enregistrer");
 
 	// construction des objets du panel Cantine
-	
+
 	private JTextField tfDate = new JTextField();
 	private JTextField tfTarif = new JTextField();
 	private JTextField tfNbrEnfants = new JTextField();
@@ -51,7 +89,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JButton btValiderC = new JButton("Valider");
 
 	// construction des objets du panel CentreLoisirs
-	
+
 	private JTextField tfDateCL = new JTextField();
 	private JTextField tfTarifCL = new JTextField();
 	private JTextField tfNbrEnfantsCL = new JTextField();
@@ -73,8 +111,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel menu
 		this.panelMenu.setBounds(10, 10, 100, 380);
-		this.panelMenu.setBackground(Color.white); // temporaire, image à
-													// intégré
+
 		this.panelMenu.setLayout(new GridLayout(7, 1));
 		this.panelMenu.add(new JLabel("menu principal"));
 		this.panelMenu.add(this.btProfil);
@@ -102,20 +139,15 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.btAnnulerC.addActionListener(this);
 
 		// bouton cliquable du panel CentreLoisirs
-		
+
 		this.btValiderCL.addActionListener(this);
 		this.btAnnulerCL.addActionListener(this);
 
 		// ___________________________________________________________//
 
 		// construction du panel Profil
-		
-		JLabel uneImage = new JLabel(new ImageIcon("image/Background.png"));
-		uneImage.setBounds(140, 10, 350, 400);
-		this.add(uneImage);
-		
-		this.panelProfil.setBounds(140, 10, 350, 400);
-		
+
+		this.panelProfil.setBounds(140, 10, 500, 340);
 
 		this.panelProfil.setLayout(new GridLayout(9, 2));
 		this.panelProfil.add(new JLabel("Nom :"));
@@ -142,18 +174,12 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.add(this.btValider);
 		this.panelProfil.add(this.btAnnuler);
 
-	
-		
-		
-		
 		this.panelProfil.setVisible(false);
 		this.add(this.panelProfil);
 
 		// construction du panel Cantine
 		this.panelCantine.setBounds(140, 10, 500, 340);
-		this.panelCantine.setBackground(Color.gray); // temporaire, image à
-														// intégré
-		
+
 		this.panelCantine.setLayout(new GridLayout(9, 2));
 		this.panelCantine.add(new JLabel("Date :"));
 		this.panelCantine.add(this.tfDate);
@@ -172,28 +198,26 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelCantine.add(this.btValiderC);
 		this.panelCantine.add(this.btAnnulerC);
-		
+
 		this.panelCantine.setVisible(false);
 		this.add(this.panelCantine);
 
 		// construction du panel CentreLoisirs
 		this.panelCentreLoisirs.setBounds(140, 10, 500, 340);
-		this.panelCentreLoisirs.setBackground(Color.YELLOW); // temporaire,
-																// image à
-																// intégré
+
 		this.panelCentreLoisirs.setLayout(new GridLayout(9, 2));
 		this.panelCentreLoisirs.add(new JLabel("Etablissement :"));
 		this.panelCentreLoisirs.add(this.tfEtablissementCL);
-		
+
 		this.panelCentreLoisirs.add(new JLabel("Date :"));
 		this.panelCentreLoisirs.add(this.tfDateCL);
-		
+
 		this.panelCentreLoisirs.add(new JLabel("Nombre d'enfants :"));
 		this.panelCentreLoisirs.add(this.tfNbrEnfantsCL);
-		
+
 		this.panelCentreLoisirs.add(new JLabel("Capacite :"));
 		this.panelCentreLoisirs.add(this.tfCapacite);
-		
+
 		this.panelCentreLoisirs.add(new JLabel("Region :"));
 		this.panelCentreLoisirs.add(this.tfRegion);
 
@@ -205,7 +229,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelCentreLoisirs.add(this.btValiderCL);
 		this.panelCentreLoisirs.add(this.btAnnulerCL);
-		
+
 		this.panelCentreLoisirs.setVisible(false);
 		this.add(this.panelCentreLoisirs);
 
@@ -240,6 +264,5 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		}
 
 	}
-	
-	
+
 }
