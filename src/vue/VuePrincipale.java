@@ -2,22 +2,21 @@
 
 package vue;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
@@ -65,33 +64,34 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	private JButton btProfil = new JButton("Profil");
 	private JButton btCantine = new JButton("Cantine");
-	private JButton btCentreLoisir = new JButton("Centre de loisirs");
+	private JButton btCentreLoisir = new JButton(
+			"<HTML><BODY><CENTER>Centre<BR>de" + "<BR>loisirs</CENTER></BODY></HTML>");
 	private JButton btQuitter = new JButton("quitter");
 
 	// construction des objets du panel Profil
 
 	private JTextField tfNom = new JTextField();
 	private JTextField tfPrenom = new JTextField();
-	private JTextField tfAge = new JTextField();
+	private JComboBox cbxAge = new JComboBox();
 	private JTextField tfTel = new JTextField();
-	private JTextField tfNbrEnfant = new JTextField();
+	private JComboBox cbxNbrEnfant = new JComboBox();
 	private JTextField tfAdresse = new JTextField();
 	private JButton btAnnuler = new JButton("annuler");
 	private JButton btValider = new JButton("enregistrer");
 
 	// construction des objets du panel Cantine
 
-	private JTextField tfDate = new JTextField();
-	private JTextField tfTarif = new JTextField();
-	private JTextField tfNbrEnfants = new JTextField();
+	private JComboBox cbxDate = new JComboBox();
+	private JComboBox cbxTarif = new JComboBox();
+	private JComboBox cbxNbrEnfants = new JComboBox();
 	private JTextField tfEtablissement = new JTextField();
 	private JButton btAnnulerC = new JButton("annuler");
 	private JButton btValiderC = new JButton("Valider");
 
 	// construction des objets du panel CentreLoisirs
 
-	private JTextField tfDateCL = new JTextField();
-	private JTextField tfTarifCL = new JTextField();
+	private JComboBox cbxDateCL = new JComboBox();
+	private JComboBox cbxTarifCL = new JComboBox();
 	private JTextField tfNbrEnfantsCL = new JTextField();
 	private JTextField tfEtablissementCL = new JTextField();
 	private JTextField tfRegion = new JTextField();
@@ -102,23 +102,29 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	public VuePrincipale() {
 		super();
 
+		// construction de la fenetre
 		this.setVisible(true);
 
 		this.setTitle("Profil utilisateur");
 		this.setBounds(200, 200, 700, 400);
-		this.setResizable(false);
+		this.setResizable(true); // permet de modifier la hauteur et largeur
+									// (petit carré)
 		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // croix rouge
+		this.setLocationRelativeTo(this.getParent()); // centre la fenetre
 
 		// construction du panel menu
 		this.panelMenu.setBounds(10, 10, 100, 380);
 
 		this.panelMenu.setLayout(new GridLayout(7, 1));
+
 		this.panelMenu.add(new JLabel("menu principal"));
 		this.panelMenu.add(this.btProfil);
 		this.panelMenu.add(this.btCantine);
 		this.panelMenu.add(this.btCentreLoisir);
 		this.panelMenu.add(this.btQuitter);
 		this.panelMenu.add(new JLabel(""));
+
 		this.panelMenu.setVisible(true);
 		this.add(this.panelMenu);
 
@@ -148,8 +154,8 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// construction du panel Profil
 
 		this.panelProfil.setBounds(140, 10, 500, 340);
-
 		this.panelProfil.setLayout(new GridLayout(9, 2));
+
 		this.panelProfil.add(new JLabel("Nom :"));
 		this.panelProfil.add(this.tfNom);
 
@@ -157,13 +163,13 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelProfil.add(this.tfPrenom);
 
 		this.panelProfil.add(new JLabel("Age :"));
-		this.panelProfil.add(this.tfAge);
+		this.panelProfil.add(this.cbxAge);
 
 		this.panelProfil.add(new JLabel("Tel :"));
 		this.panelProfil.add(this.tfTel);
 
 		this.panelProfil.add(new JLabel("Nombre d'enfant"));
-		this.panelProfil.add(this.tfNbrEnfant);
+		this.panelProfil.add(this.cbxNbrEnfant);
 
 		this.panelProfil.add(new JLabel("Adresse :"));
 		this.panelProfil.add(this.tfAdresse);
@@ -182,13 +188,13 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelCantine.setLayout(new GridLayout(9, 2));
 		this.panelCantine.add(new JLabel("Date :"));
-		this.panelCantine.add(this.tfDate);
+		this.panelCantine.add(this.cbxDate);
 
 		this.panelCantine.add(new JLabel("Tarif :"));
-		this.panelCantine.add(this.tfTarif);
+		this.panelCantine.add(this.cbxTarif);
 
 		this.panelCantine.add(new JLabel("Nombre d'enfants :"));
-		this.panelCantine.add(this.tfNbrEnfants);
+		this.panelCantine.add(this.cbxNbrEnfants);
 
 		this.panelCantine.add(new JLabel("Etablissement :"));
 		this.panelCantine.add(this.tfEtablissement);
@@ -210,7 +216,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCentreLoisirs.add(this.tfEtablissementCL);
 
 		this.panelCentreLoisirs.add(new JLabel("Date :"));
-		this.panelCentreLoisirs.add(this.tfDateCL);
+		this.panelCentreLoisirs.add(this.cbxDateCL);
 
 		this.panelCentreLoisirs.add(new JLabel("Nombre d'enfants :"));
 		this.panelCentreLoisirs.add(this.tfNbrEnfantsCL);
@@ -222,7 +228,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCentreLoisirs.add(this.tfRegion);
 
 		this.panelCentreLoisirs.add(new JLabel("Tarif :"));
-		this.panelCentreLoisirs.add(this.tfTarifCL);
+		this.panelCentreLoisirs.add(this.cbxTarifCL);
 
 		this.panelCentreLoisirs.add(new JLabel(""));
 		this.panelCentreLoisirs.add(new JLabel(""));
