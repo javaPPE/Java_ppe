@@ -116,7 +116,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.FenetrePrincipal.add(uneImage);
 		this.FenetrePrincipal.setVisible(true);
 		
-		
 		// construction du panel menu
 		this.panelMenu.setBounds(10, 120, 100, 600);
 		this.panelMenu.setLayout(new GridLayout(8, 1));
@@ -241,7 +240,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.FenetrePrincipal.add(this.panelCentreLoisirs);
 
 	}
-
+	
+	// permet que quand on clique sur un bouton pour ouvrir un panel l'autre se ferme
+	// et ainsi de suite
+	// permet aussi de faire marcher le bouton quitter pour fermer la fenetre
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btProfil) {
