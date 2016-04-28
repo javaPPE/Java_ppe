@@ -2,6 +2,7 @@
 
 package vue;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -103,8 +104,6 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction de la fenetre
 		
-		
-
 		this.FenetrePrincipal.setTitle("Profil utilisateur");
 		this.FenetrePrincipal.setBounds(200, 200, 700, 500);
 		this.FenetrePrincipal.setResizable(false); // permet de modifier la hauteur et largeur
@@ -119,17 +118,16 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		
 		
 		// construction du panel menu
-		this.panelMenu.setBounds(10, 100, 100, 600);
+		this.panelMenu.setBounds(10, 120, 100, 600);
 		this.panelMenu.setLayout(new GridLayout(8, 1));
 		
 		this.panelMenu.add(this.btProfil);
 		this.panelMenu.add(this.btCantine);
 		this.panelMenu.add(this.btCentreLoisir);
 		this.panelMenu.add(this.btQuitter);
-		this.panelMenu.add(new JLabel(""));
-
-		this.panelMenu.setVisible(true);
+		
 		this.FenetrePrincipal.add(this.panelMenu);
+		this.panelMenu.setVisible(true);
 
 		// ___________________________________________________________//
 
