@@ -2,7 +2,6 @@
 
 package vue;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -16,13 +15,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
-
+	
+	private JFrame FenetrePrincipal = new JFrame();
 	private JPanel panelMenu = new JPanel();
-
+	
 	// permet d'avoir une image en background du panel profil
 	private JPanel panelProfil = new JPanel()
 
@@ -103,22 +102,26 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		super();
 
 		// construction de la fenetre
-		this.setVisible(true);
+		
+		
 
-		this.setTitle("Profil utilisateur");
-		this.setBounds(200, 200, 700, 400);
-		this.setResizable(true); // permet de modifier la hauteur et largeur
+		this.FenetrePrincipal.setTitle("Profil utilisateur");
+		this.FenetrePrincipal.setBounds(200, 200, 700, 500);
+		this.FenetrePrincipal.setResizable(false); // permet de modifier la hauteur et largeur
 									// (petit carré)
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // croix rouge
-		this.setLocationRelativeTo(this.getParent()); // centre la fenetre
-
+		this.FenetrePrincipal.setLayout(null);
+		this.FenetrePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // croix rouge
+		this.FenetrePrincipal.setLocationRelativeTo(this.getParent()); // centre la fenetre
+		JLabel uneImage = new JLabel(new ImageIcon("image/banniere.png"));// banniere de la fenetre
+		uneImage.setBounds(0, 0, 700, 88);
+		this.FenetrePrincipal.add(uneImage);
+		this.FenetrePrincipal.setVisible(true);
+		
+		
 		// construction du panel menu
-		this.panelMenu.setBounds(10, 10, 100, 380);
-
-		this.panelMenu.setLayout(new GridLayout(7, 1));
-
-		this.panelMenu.add(new JLabel("menu principal"));
+		this.panelMenu.setBounds(10, 100, 100, 600);
+		this.panelMenu.setLayout(new GridLayout(8, 1));
+		
 		this.panelMenu.add(this.btProfil);
 		this.panelMenu.add(this.btCantine);
 		this.panelMenu.add(this.btCentreLoisir);
@@ -126,7 +129,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelMenu.add(new JLabel(""));
 
 		this.panelMenu.setVisible(true);
-		this.add(this.panelMenu);
+		this.FenetrePrincipal.add(this.panelMenu);
 
 		// ___________________________________________________________//
 
@@ -153,9 +156,9 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel Profil
 
-		this.panelProfil.setBounds(140, 10, 500, 340);
-		this.panelProfil.setLayout(new GridLayout(9, 2));
-
+		this.panelProfil.setBounds(140, 100, 500, 340);
+		this.panelProfil.setLayout(new GridLayout(8, 2));
+		
 		this.panelProfil.add(new JLabel("Nom :"));
 		this.panelProfil.add(this.tfNom);
 
@@ -179,14 +182,14 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelProfil.add(this.btValider);
 		this.panelProfil.add(this.btAnnuler);
-
+		
 		this.panelProfil.setVisible(false);
-		this.add(this.panelProfil);
+		this.FenetrePrincipal.add(this.panelProfil);
 
 		// construction du panel Cantine
-		this.panelCantine.setBounds(140, 10, 500, 340);
-
-		this.panelCantine.setLayout(new GridLayout(9, 2));
+		this.panelCantine.setBounds(140, 100, 500, 340);
+		this.panelCantine.setLayout(new GridLayout(6, 2));
+		
 		this.panelCantine.add(new JLabel("Date :"));
 		this.panelCantine.add(this.cbxDate);
 
@@ -206,12 +209,12 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCantine.add(this.btAnnulerC);
 
 		this.panelCantine.setVisible(false);
-		this.add(this.panelCantine);
+		this.FenetrePrincipal.add(this.panelCantine);
 
 		// construction du panel CentreLoisirs
-		this.panelCentreLoisirs.setBounds(140, 10, 500, 340);
+		this.panelCentreLoisirs.setBounds(140, 100, 500, 340);
 
-		this.panelCentreLoisirs.setLayout(new GridLayout(9, 2));
+		this.panelCentreLoisirs.setLayout(new GridLayout(8, 2));
 		this.panelCentreLoisirs.add(new JLabel("Etablissement :"));
 		this.panelCentreLoisirs.add(this.tfEtablissementCL);
 
@@ -237,7 +240,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCentreLoisirs.add(this.btAnnulerCL);
 
 		this.panelCentreLoisirs.setVisible(false);
-		this.add(this.panelCentreLoisirs);
+		this.FenetrePrincipal.add(this.panelCentreLoisirs);
 
 	}
 
@@ -264,7 +267,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			int r = JOptionPane.showConfirmDialog(this, " Voulez vous quitter ?", "Quitter",
 					JOptionPane.OK_CANCEL_OPTION);
 			if (r == 0) {
-				this.dispose();
+				this.FenetrePrincipal.dispose();
 			}
 
 		}
