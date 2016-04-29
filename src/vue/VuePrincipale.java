@@ -2,7 +2,6 @@
 
 package vue;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -19,10 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class VuePrincipale extends JFrame implements ActionListener {
-	
+
 	private JFrame FenetrePrincipal = new JFrame();
 	private JPanel panelMenu = new JPanel();
-	
+
 	// permet d'avoir une image en background du panel profil
 	private JPanel panelProfil = new JPanel()
 
@@ -103,28 +102,35 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		super();
 
 		// construction de la fenetre
-		
+
 		this.FenetrePrincipal.setTitle("Profil utilisateur");
 		this.FenetrePrincipal.setBounds(200, 200, 700, 500);
-		this.FenetrePrincipal.setResizable(false); // permet de modifier la hauteur et largeur
-									// (petit carré)
+		this.FenetrePrincipal.setResizable(false); // permet de modifier la
+													// hauteur et largeur
+		// (petit carré)
 		this.FenetrePrincipal.setLayout(null);
-		this.FenetrePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // croix rouge
-		this.FenetrePrincipal.setLocationRelativeTo(this.getParent()); // centre la fenetre
-		JLabel uneImage = new JLabel(new ImageIcon("image/banniere.png"));// banniere de la fenetre
+		this.FenetrePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // croix
+																				// rouge
+		this.FenetrePrincipal.setLocationRelativeTo(this.getParent()); // centre
+																		// la
+																		// fenetre
+		JLabel uneImage = new JLabel(new ImageIcon("image/banniere.png"));// banniere
+																			// de
+																			// la
+																			// fenetre
 		uneImage.setBounds(0, 0, 700, 88);
 		this.FenetrePrincipal.add(uneImage);
 		this.FenetrePrincipal.setVisible(true);
-		
+
 		// construction du panel menu
 		this.panelMenu.setBounds(10, 120, 100, 600);
 		this.panelMenu.setLayout(new GridLayout(8, 1));
-		
+
 		this.panelMenu.add(this.btProfil);
 		this.panelMenu.add(this.btCantine);
 		this.panelMenu.add(this.btCentreLoisir);
 		this.panelMenu.add(this.btQuitter);
-		
+
 		this.FenetrePrincipal.add(this.panelMenu);
 		this.panelMenu.setVisible(true);
 
@@ -155,7 +161,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelProfil.setBounds(140, 100, 500, 340);
 		this.panelProfil.setLayout(new GridLayout(8, 2));
-		
+
 		this.panelProfil.add(new JLabel("Nom :"));
 		this.panelProfil.add(this.tfNom);
 
@@ -179,14 +185,14 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		this.panelProfil.add(this.btValider);
 		this.panelProfil.add(this.btAnnuler);
-		
+
 		this.panelProfil.setVisible(false);
 		this.FenetrePrincipal.add(this.panelProfil);
 
 		// construction du panel Cantine
 		this.panelCantine.setBounds(140, 100, 500, 340);
 		this.panelCantine.setLayout(new GridLayout(6, 2));
-		
+
 		this.panelCantine.add(new JLabel("Date :"));
 		this.panelCantine.add(this.cbxDate);
 
@@ -240,10 +246,11 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.FenetrePrincipal.add(this.panelCentreLoisirs);
 
 	}
-	
-	// permet que quand on clique sur un bouton pour ouvrir un panel l'autre se ferme
+
+	// permet que quand on clique sur un bouton pour ouvrir un panel l'autre se
+	// ferme
 	// et ainsi de suite
-	// permet aussi de faire marcher le bouton quitter pour fermer la fenetre
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btProfil) {
@@ -261,8 +268,38 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			this.panelProfil.setVisible(false);
 			this.panelCantine.setVisible(false);
 			this.panelCentreLoisirs.setVisible(true);
+		}
 
-		} else if (e.getSource() == this.btQuitter) {
+		// permet de faire marcher le bouton annuler dans Profil (efface le
+		// contenu)
+		else if (e.getSource() == this.btAnnuler) {
+			this.tfNom.setText("");
+			this.tfPrenom.setText("");
+			this.tfTel.setText("");
+			this.tfAdresse.setText("");
+
+		}
+
+		// permet de faire marcher le bouton annuler dans Cantine (efface le
+		// contenu)
+		else if (e.getSource() == this.btAnnulerC) {
+			this.tfEtablissement.setText("");
+
+		}
+
+		// permet de faire marcher le bouton annuler dans Centre de loisirs
+		// (efface le
+		// contenu)
+		else if (e.getSource() == this.btAnnulerCL) {
+			this.tfNbrEnfantsCL.setText("");
+			this.tfEtablissementCL.setText("");
+			this.tfRegion.setText("");
+			this.tfCapacite.setText("");
+
+		}
+
+		// permet de faire marcher le bouton quitter
+		else if (e.getSource() == this.btQuitter) {
 
 			int r = JOptionPane.showConfirmDialog(this, " Voulez vous quitter ?", "Quitter",
 					JOptionPane.OK_CANCEL_OPTION);
@@ -273,5 +310,4 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		}
 
 	}
-
 }

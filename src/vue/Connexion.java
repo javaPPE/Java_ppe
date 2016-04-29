@@ -20,73 +20,79 @@ import javax.swing.JTextField;
 import modele.ModeleUser;
 
 public class Connexion extends JFrame implements ActionListener, KeyListener {
-
-		// permet d'avoir une image en background du panel connexion
-		private JPanel unPanel = new JPanel()
-
-		{
-			Image img = new ImageIcon("image/Background.png").getImage();
-
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(img, 0, 0, null);
-			}
-		};
 	
+	private JFrame FenetreConnexion = new JFrame();
+
+	// permet d'avoir une image en background du panel connexion
+	private JPanel unPanel = new JPanel()
+
+	{
+		Image img = new ImageIcon("image/Background.png").getImage();
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(img, 0, 0, null);
+		}
+	};
+
 	// construction des objets du panel
-	private JTextField tfEmail = new JTextField();
+	private JTextField tfLogin = new JTextField();
 	private JPasswordField tfMdp = new JPasswordField();
 	private JButton btAnnuler = new JButton("Annuler");
 	private JButton btValider = new JButton("Valider");
 
 	public Connexion() {
-		this.setBounds(200, 200, 400, 200);
-		this.setTitle("Connexion au profil utilisateur");
-		this.setResizable(false);
-		this.setLayout(null);
+		//fenetre connexion
+		this.FenetreConnexion.setBounds(200, 200, 400, 200);
+		this.FenetreConnexion.setTitle("Connexion au profil utilisateur");
+		this.FenetreConnexion.setResizable(false);
+		this.FenetreConnexion.setLayout(null);
+		this.FenetreConnexion.setVisible(true);
 
 		// placement des objets dans le panel
-		this.unPanel.setBounds(0, 0, 400, 200);
-		this.unPanel.setLayout(new GridLayout(5, 2));
+		this.unPanel.setBounds(0, 0, 400, 198);
+		this.unPanel.setLayout(new GridLayout(6, 2));
+
 		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(new JLabel(""));
-		this.unPanel.add(new JLabel("Email : "));
-		this.unPanel.add(this.tfEmail);
+		this.unPanel.add(new JLabel("Login : "));
+		this.unPanel.add(this.tfLogin);
 		this.unPanel.add(new JLabel("Mot de passe : "));
 		this.unPanel.add(this.tfMdp);
+		this.unPanel.add(new JLabel(""));
+		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(this.btAnnuler);
 		this.unPanel.add(this.btValider);
-		this.unPanel.add(new JLabel(""));
-		this.unPanel.add(new JLabel(""));
+
 		this.unPanel.setVisible(true);
-		this.add(this.unPanel);
+		this.FenetreConnexion.add(this.unPanel);
 
 		// rendre les boutons cliquables
 		this.btAnnuler.addActionListener(this);
 		this.btValider.addActionListener(this);
-		
+
 		// rend les boutons cliquables avec le bouton entrer
 		this.tfMdp.addKeyListener(this);
-		this.tfEmail.addKeyListener(this);
+		this.tfLogin.addKeyListener(this);
 
-		this.setVisible(true);
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btAnnuler) {
-			this.tfEmail.setText("");
+			this.tfLogin.setText("");
 			this.tfMdp.setText("");
 		} else if (e.getSource() == this.btValider) {
-			String email = this.tfEmail.getText();
+			String login = this.tfLogin.getText();
 			String mdp = new String(this.tfMdp.getPassword()); // recup le mdp
 
-			if (email.equals("") || mdp.equals("")) {
-				JOptionPane.showMessageDialog(this, "veuillez remplir vos id", "remplir les id", JOptionPane.OK_OPTION);
+			if (login.equals("") || mdp.equals("")) {
+				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention", JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
-				String tab[] = ModeleUser.selectWhere(email, mdp);
+				String tab[] = ModeleUser.selectWhere(login, mdp);
 				if (tab[0] == null) {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
@@ -94,7 +100,7 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0] + " " + tab[1], "Bienvenue",
 							JOptionPane.INFORMATION_MESSAGE);
 					// destruction de l'interface connexion
-					this.dispose();
+					this.FenetreConnexion.dispose();
 					// lancement du menu
 
 				}
@@ -108,13 +114,13 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-			String email = this.tfEmail.getText();
+			String login = this.tfLogin.getText();
 			String mdp = new String(this.tfMdp.getPassword()); // recup le mdp
-			if (email.equals("") || mdp.equals("")) {
-				JOptionPane.showMessageDialog(this, "veuillez remplir vos id", "remplir les id", JOptionPane.OK_OPTION);
+			if (login.equals("") || mdp.equals("")) {
+				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention", JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
-				String tab[] = ModeleUser.selectWhere(email, mdp);
+				String tab[] = ModeleUser.selectWhere(login, mdp);
 				if (tab[0] == null) {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
@@ -122,7 +128,7 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0] + " " + tab[1], "Bienvenue",
 							JOptionPane.INFORMATION_MESSAGE);
 					// destruction de l'interface connexion
-					this.dispose();
+					this.FenetreConnexion.dispose();
 					// lancement du menu
 
 				}
