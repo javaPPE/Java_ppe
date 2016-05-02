@@ -1,5 +1,7 @@
 package vue;
 
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -20,7 +22,7 @@ import javax.swing.JTextField;
 import modele.ModeleUser;
 
 public class Connexion extends JFrame implements ActionListener, KeyListener {
-	
+
 	private JFrame FenetreConnexion = new JFrame();
 
 	// permet d'avoir une image en background du panel connexion
@@ -43,7 +45,7 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 	private JButton btValider = new JButton("Valider");
 
 	public Connexion() {
-		//fenetre connexion
+		// fenetre connexion
 		this.FenetreConnexion.setBounds(200, 200, 400, 200);
 		this.FenetreConnexion.setTitle("Connexion au profil utilisateur");
 		this.FenetreConnexion.setResizable(false);
@@ -56,14 +58,27 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 
 		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(new JLabel(""));
-		this.unPanel.add(new JLabel("Login : "));
+		Component Login = this.unPanel.add(new JLabel("Login : "));
 		this.unPanel.add(this.tfLogin);
-		this.unPanel.add(new JLabel("Mot de passe : "));
+		Component Mdp = this.unPanel.add(new JLabel("Mot de passe : "));
 		this.unPanel.add(this.tfMdp);
 		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(new JLabel(""));
-		this.unPanel.add(this.btAnnuler);
-		this.unPanel.add(this.btValider);
+		Component Annuler = this.unPanel.add(this.btAnnuler);
+		Component Valider = this.unPanel.add(this.btValider);
+
+		// gère la police, taille...
+		Font login = new Font("Arial", Font.BOLD, 18);
+		Login.setFont(login);
+
+		Font mdp = new Font("Arial", Font.BOLD, 18);
+		Mdp.setFont(mdp);
+
+		Font annuler = new Font("Arial", Font.BOLD, 15);
+		Annuler.setFont(annuler);
+
+		Font valider = new Font("Arial", Font.BOLD, 15);
+		Valider.setFont(valider);
 
 		this.unPanel.setVisible(true);
 		this.FenetreConnexion.add(this.unPanel);
@@ -76,7 +91,6 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 		this.tfMdp.addKeyListener(this);
 		this.tfLogin.addKeyListener(this);
 
-		
 	}
 
 	@Override
@@ -89,7 +103,8 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 			String mdp = new String(this.tfMdp.getPassword()); // recup le mdp
 
 			if (login.equals("") || mdp.equals("")) {
-				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention", JOptionPane.OK_OPTION);
+				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention",
+						JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
 				String tab[] = ModeleUser.selectWhere(login, mdp);
@@ -117,7 +132,8 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 			String login = this.tfLogin.getText();
 			String mdp = new String(this.tfMdp.getPassword()); // recup le mdp
 			if (login.equals("") || mdp.equals("")) {
-				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention", JOptionPane.OK_OPTION);
+				JOptionPane.showMessageDialog(this, "veuillez remplir l'id ou le mot de passe", "Attention",
+						JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
 				String tab[] = ModeleUser.selectWhere(login, mdp);
