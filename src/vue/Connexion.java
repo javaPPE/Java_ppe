@@ -58,12 +58,16 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 
 		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(new JLabel(""));
+
 		Component Login = this.unPanel.add(new JLabel("Login : "));
 		this.unPanel.add(this.tfLogin);
+
 		Component Mdp = this.unPanel.add(new JLabel("Mot de passe : "));
 		this.unPanel.add(this.tfMdp);
+
 		this.unPanel.add(new JLabel(""));
 		this.unPanel.add(new JLabel(""));
+
 		Component Annuler = this.unPanel.add(this.btAnnuler);
 		Component Valider = this.unPanel.add(this.btValider);
 
@@ -112,11 +116,12 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0] + " " + tab[1], "Bienvenue",
+					JOptionPane.showMessageDialog(null, "Bonjour " + tab[0] + " ", " Bienvenue",
 							JOptionPane.INFORMATION_MESSAGE);
 					// destruction de l'interface connexion
 					this.FenetreConnexion.dispose();
 					// lancement du menu
+					new VuePrincipale();
 
 				}
 
@@ -141,11 +146,12 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0] + " " + tab[1], "Bienvenue",
+					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0], "Bienvenue",
 							JOptionPane.INFORMATION_MESSAGE);
 					// destruction de l'interface connexion
 					this.FenetreConnexion.dispose();
 					// lancement du menu
+					new VuePrincipale();
 
 				}
 			}
