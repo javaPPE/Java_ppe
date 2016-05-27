@@ -1,6 +1,8 @@
 package vue;
 
 import java.awt.Component;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -96,6 +98,14 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 		this.tfLogin.addKeyListener(this);
 
 	}
+	
+	//Pour le Hachage  
+	
+	public String mdpToSha1(String mdp)
+	{
+		return DigestUtils.sha1Hex(mdp);
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -111,7 +121,7 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 						JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
-				String tab[] = ModeleUser.selectWhere(login, mdp);
+				String tab[] = ModeleUser.selectWhere(login, this.mdpToSha1(mdp));
 				if (tab[0] == null) {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
@@ -141,12 +151,12 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 						JOptionPane.OK_OPTION);
 			} else {
 				// test de connexion
-				String tab[] = ModeleUser.selectWhere(login, mdp);
+				String tab[] = ModeleUser.selectWhere(login, this.mdpToSha1(mdp));
 				if (tab[0] == null) {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter", "Erreur",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Bonjour" + tab[0], "Bienvenue",
+					JOptionPane.showMessageDialog(null, "Bonjour " + tab[0], "Bienvenue",
 							JOptionPane.INFORMATION_MESSAGE);
 					// destruction de l'interface connexion
 					this.FenetreConnexion.dispose();
