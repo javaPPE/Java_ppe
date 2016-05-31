@@ -37,6 +37,20 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		}
 	};
 
+	// permet d'avoir une image en background du panel Enfant
+
+	private JPanel panelEnfant = new JPanel()
+
+	{
+		Image img = new ImageIcon("image/Background.png").getImage();
+
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			g.drawImage(img, 0, 0, null);
+		}
+	};
+
 	// permet d'avoir une image en background du panel cantine
 
 	private JPanel panelCantine = new JPanel() {
@@ -64,6 +78,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	// construction des boutons
 
 	private JButton btProfil = new JButton("Profil");
+	private JButton btEnfant = new JButton("Enfant");
 	private JButton btCantine = new JButton("Cantine");
 	private JButton btCentreLoisir = new JButton(
 			"<HTML><BODY><CENTER>Centre<BR>de" + "<BR>loisirs</CENTER></BODY></HTML>");
@@ -79,8 +94,17 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JTextField tfAdresse = new JTextField();
 	private JTextField tfCP = new JTextField();
 	private JTextField tfVille = new JTextField();
-	private JButton btAnnuler = new JButton("annuler");
-	private JButton btValider = new JButton("enregistrer");
+	private JButton btAnnuler = new JButton("Annuler");
+	private JButton btValider = new JButton("Valider");
+
+	// construction des objets du panel Enfant
+
+	private JTextField tfNomE = new JTextField();
+	private JTextField tfPrenomE = new JTextField();
+	private JTextField tfDate = new JTextField();
+	private JTextField tfSexe = new JTextField();
+	private JButton btAnnulerE = new JButton("Annuler");
+	private JButton btValiderE = new JButton("Valider");
 
 	// construction des objets du panel Cantine
 
@@ -88,7 +112,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JComboBox cbxTarif = new JComboBox();
 	private JComboBox cbxNbrEnfants = new JComboBox();
 	private JTextField tfEtablissement = new JTextField();
-	private JButton btAnnulerC = new JButton("annuler");
+	private JButton btAnnulerC = new JButton("Annuler");
 	private JButton btValiderC = new JButton("Valider");
 
 	// construction des objets du panel CentreLoisirs
@@ -99,7 +123,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 	private JTextField tfEtablissementCL = new JTextField();
 	private JTextField tfRegion = new JTextField();
 	private JTextField tfCapacite = new JTextField();
-	private JButton btAnnulerCL = new JButton("annuler");
+	private JButton btAnnulerCL = new JButton("Annuler");
 	private JButton btValiderCL = new JButton("Valider");
 
 	public VuePrincipale() {
@@ -108,7 +132,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// construction de la fenetre
 
 		this.FenetrePrincipal.setTitle("Profil utilisateur");
-		this.FenetrePrincipal.setBounds(200, 200, 800, 500);
+		this.FenetrePrincipal.setBounds(200, 200, 800, 550);
 		this.FenetrePrincipal.setResizable(false); // permet de modifier la
 													// hauteur et largeur
 		// (petit carré)
@@ -131,6 +155,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelMenu.setLayout(new GridLayout(8, 1));
 
 		Component Profil = this.panelMenu.add(this.btProfil);
+		Component Enfant = this.panelMenu.add(this.btEnfant);
 		Component Cantine = this.panelMenu.add(this.btCantine);
 		Component CentreLoisir = this.panelMenu.add(this.btCentreLoisir);
 		Component Quitter = this.panelMenu.add(this.btQuitter);
@@ -138,6 +163,9 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// gère la police, taille...
 		Font profil = new Font("Arial", Font.BOLD, 15);
 		Profil.setFont(profil);
+
+		Font enfant = new Font("Arial", Font.BOLD, 15);
+		Enfant.setFont(enfant);
 
 		Font cantine = new Font("Arial", Font.BOLD, 15);
 		Cantine.setFont(cantine);
@@ -155,6 +183,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// bouton cliquable du panel menu
 		this.btProfil.addActionListener(this);
+		this.btEnfant.addActionListener(this);
 		this.btCantine.addActionListener(this);
 		this.btCentreLoisir.addActionListener(this);
 		this.btQuitter.addActionListener(this);
@@ -162,6 +191,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// bouton cliquable du panel Profil
 		this.btValider.addActionListener(this);
 		this.btAnnuler.addActionListener(this);
+
+		// bouton cliquable du panel Enfant
+		this.btValiderE.addActionListener(this);
+		this.btAnnulerE.addActionListener(this);
 
 		// bouton cliquable du panel Cantine
 		this.btValiderC.addActionListener(this);
@@ -234,14 +267,59 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Font cp = new Font("Arial", Font.BOLD, 18);
 		CP.setFont(cp);
 
-		Font valider = new Font("Arial", Font.BOLD, 15);
-		Valider.setFont(valider);
+		Font validerP = new Font("Arial", Font.BOLD, 15);
+		Valider.setFont(validerP);
 
-		Font annuler = new Font("Arial", Font.BOLD, 15);
-		Annuler.setFont(annuler);
+		Font annulerP = new Font("Arial", Font.BOLD, 15);
+		Annuler.setFont(annulerP);
 
 		this.panelProfil.setVisible(false);
 		this.FenetrePrincipal.add(this.panelProfil);
+
+		// construction du panel Enfant
+		this.panelEnfant.setBounds(140, 110, 600, 340);
+		this.panelEnfant.setLayout(new GridLayout(6, 2));
+
+		Component NomE = this.panelEnfant.add(new JLabel("Nom :"));
+		this.panelEnfant.add(this.tfNomE);
+
+		Component PrenomE = this.panelEnfant.add(new JLabel("Prenom :"));
+		this.panelEnfant.add(this.tfPrenomE);
+
+		Component DateE = this.panelEnfant.add(new JLabel("Date :"));
+		this.panelEnfant.add(this.tfDate);
+
+		Component Sexe = this.panelEnfant.add(new JLabel("Sexe :"));
+		this.panelEnfant.add(this.tfSexe);
+
+		this.panelEnfant.add(new JLabel(""));
+		this.panelEnfant.add(new JLabel(""));
+
+		Component ValiderE = this.panelEnfant.add(this.btValiderE);
+		Component AnnulerE = this.panelEnfant.add(this.btAnnulerE);
+
+		// gère la police, taille...
+
+		Font nomE = new Font("Arial", Font.BOLD, 18);
+		NomE.setFont(nomE);
+
+		Font prenomE = new Font("Arial", Font.BOLD, 18);
+		PrenomE.setFont(prenomE);
+
+		Font date = new Font("Arial", Font.BOLD, 18);
+		DateE.setFont(date);
+
+		Font sexe = new Font("Arial", Font.BOLD, 18);
+		Sexe.setFont(sexe);
+
+		Font validerE = new Font("Arial", Font.BOLD, 15);
+		ValiderE.setFont(validerE);
+
+		Font annulerE = new Font("Arial", Font.BOLD, 15);
+		AnnulerE.setFont(annulerE);
+
+		this.panelEnfant.setVisible(false);
+		this.FenetrePrincipal.add(this.panelEnfant);
 
 		// construction du panel Cantine
 		this.panelCantine.setBounds(140, 110, 600, 340);
@@ -266,8 +344,8 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Component AnnulerC = this.panelCantine.add(this.btAnnulerC);
 
 		// gère la police, taille...
-		Font date = new Font("Arial", Font.BOLD, 18);
-		Date.setFont(date);
+		Font dateC = new Font("Arial", Font.BOLD, 18);
+		Date.setFont(dateC);
 
 		Font tarif = new Font("Arial", Font.BOLD, 18);
 		Tarif.setFont(tarif);
@@ -354,16 +432,25 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		if (e.getSource() == this.btProfil) {
 
 			this.panelProfil.setVisible(true);
+			this.panelEnfant.setVisible(false);
 			this.panelCantine.setVisible(false);
 			this.panelCentreLoisirs.setVisible(false);
 
+		} else if (e.getSource() == this.btEnfant) {
+			this.panelProfil.setVisible(false);
+			this.panelEnfant.setVisible(true);
+			this.panelCantine.setVisible(false);
+			this.panelCentreLoisirs.setVisible(false);
+			
 		} else if (e.getSource() == this.btCantine) {
 			this.panelProfil.setVisible(false);
+			this.panelEnfant.setVisible(false);
 			this.panelCantine.setVisible(true);
 			this.panelCentreLoisirs.setVisible(false);
 
 		} else if (e.getSource() == this.btCentreLoisir) {
 			this.panelProfil.setVisible(false);
+			this.panelEnfant.setVisible(false);
 			this.panelCantine.setVisible(false);
 			this.panelCentreLoisirs.setVisible(true);
 		}
@@ -377,6 +464,16 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			this.tfAdresse.setText("");
 			this.tfCP.setText("");
 			this.tfVille.setText("");
+
+		}
+
+		// permet de faire marcher le bouton annuler dans Enfant (efface le
+		// contenu)
+		else if (e.getSource() == this.btAnnulerE) {
+			this.tfNomE.setText("");
+			this.tfPrenomE.setText("");
+			this.tfDate.setText("");
+			this.tfSexe.setText("");
 
 		}
 

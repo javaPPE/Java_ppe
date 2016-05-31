@@ -1,8 +1,6 @@
 package vue;
 
 import java.awt.Component;
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -20,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 import modele.ModeleUser;
 
