@@ -1,32 +1,40 @@
 package controleur;
 
+// les infos coresspondante de la table personne dans le panel profil
 public class Profil {
-	private String nom, prenom, adresse;
-	private int nbrEnfant, tel, age;
+	private String nom, prenom, adresse, sexe, ville, email,datenaiss, cp, tel;
 	
+
 	public Profil() {
-		this.nom =  "";
-		this.prenom =  "";
-		this.adresse =  "";
-		this.tel = 0;
-		this.nbrEnfant = 0;
-		this.age=0;
+		this.nom = "";
+		this.prenom = "";
+		this.adresse = "";
+		this.sexe = "";
+		this.ville = "";
+		this.email = "";
+		this.tel = "";
+		this.datenaiss = "";
+		this.cp = "";
 	}
-	
-	public Profil(String nom,String prenom, String adresse, int nbrEnfant, int tel, int age) {
+
+	public Profil(String nom, String prenom, String adresse, String sexe, String ville, String email, String tel,
+			String datenaiss, String cp) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.nbrEnfant = nbrEnfant;
+		this.sexe = sexe;
 		this.adresse = adresse;
+		this.ville = ville;
+		this.email = email;
+		this.cp = cp;
 		this.tel = tel;
-		this.age = age;
+		this.datenaiss = datenaiss;
 	}
 
 	public String toString() {
-		return this.nom + " - " + this.prenom + " - " + this.adresse + " - " + this.nbrEnfant + " - " + this.tel + " - "
-				+ this.age;
+		return this.nom + " - " + this.prenom + " - " + this.adresse + " - " + this.ville + " - " + this.tel + " - "
+				+ this.datenaiss + "-" + this.cp + "-" + this.email + "-" + this.sexe;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -51,35 +59,56 @@ public class Profil {
 		this.adresse = adresse;
 	}
 
-	public int getNbrEnfant() {
-		return nbrEnfant;
+	public String getSexe() {
+		return sexe;
 	}
 
-	public void setNbrEnfant(int nbrEnfant) {
-		this.nbrEnfant = nbrEnfant;
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
 
-	public int getTel() {
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDatenaiss() {
+		return datenaiss;
+	}
+
+	public void setDatenaiss(String datenaiss) {
+		this.datenaiss = datenaiss;
+	}
+
+	public String getCp() {
+		return cp;
+	}
+
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	
 
-	
-	
 	
 
 }
-

@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import controleur.Profil;
 import modele.ModeleUser;
 
 public class Connexion extends JFrame implements ActionListener, KeyListener {
@@ -131,7 +132,8 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					// destruction de l'interface connexion
 					this.FenetreConnexion.dispose();
 					// lancement du menu
-					new VuePrincipale();
+					Profil unProfil = ModeleUser.selectWhereProfil(login, this.mdpToSha1(mdp));
+					new VuePrincipale(unProfil);
 
 				}
 
@@ -161,7 +163,8 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					// destruction de l'interface connexion
 					this.FenetreConnexion.dispose();
 					// lancement du menu
-					new VuePrincipale();
+					Profil unProfil = ModeleUser.selectWhereProfil(login, this.mdpToSha1(mdp));
+					new VuePrincipale(unProfil);
 
 				}
 			}

@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controleur.Profil;
+import modele.ModeleUser;
+
 public class VuePrincipale extends JFrame implements ActionListener {
 
 	private JFrame FenetrePrincipal = new JFrame();
@@ -88,12 +91,13 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	private JTextField tfNom = new JTextField();
 	private JTextField tfPrenom = new JTextField();
-	private JComboBox cbxAge = new JComboBox();
+	private JTextField tfDateNaiss = new JTextField();
 	private JTextField tfTel = new JTextField();
-	private JComboBox cbxNbrEnfant = new JComboBox();
 	private JTextField tfAdresse = new JTextField();
 	private JTextField tfCP = new JTextField();
 	private JTextField tfVille = new JTextField();
+	private JTextField tfEmail = new JTextField();
+	private JTextField tfSexeP = new JTextField();
 	private JButton btAnnuler = new JButton("Annuler");
 	private JButton btValider = new JButton("Valider");
 
@@ -108,25 +112,23 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	// construction des objets du panel Cantine
 
-	private JComboBox cbxDate = new JComboBox();
-	private JComboBox cbxTarif = new JComboBox();
-	private JComboBox cbxNbrEnfants = new JComboBox();
-	private JTextField tfEtablissement = new JTextField();
+	private JComboBox cbxDateDebC = new JComboBox();
+	private JComboBox cbxDateFinC = new JComboBox();
+	private JComboBox cbxNbrEnfantsC = new JComboBox();
+	private JComboBox cbxEtabC = new JComboBox();
 	private JButton btAnnulerC = new JButton("Annuler");
 	private JButton btValiderC = new JButton("Valider");
 
 	// construction des objets du panel CentreLoisirs
 
-	private JComboBox cbxDateCL = new JComboBox();
+	private JComboBox cbxDateDebCL = new JComboBox();
+	private JComboBox cbxDateFinCL = new JComboBox();
 	private JComboBox cbxTarifCL = new JComboBox();
-	private JTextField tfNbrEnfantsCL = new JTextField();
-	private JTextField tfEtablissementCL = new JTextField();
-	private JTextField tfRegion = new JTextField();
-	private JTextField tfCapacite = new JTextField();
+	private JComboBox cbxCentreCL = new JComboBox();
 	private JButton btAnnulerCL = new JButton("Annuler");
 	private JButton btValiderCL = new JButton("Valider");
 
-	public VuePrincipale() {
+	public VuePrincipale(Profil unProfil) {
 		super();
 
 		// construction de la fenetre
@@ -210,31 +212,44 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// construction du panel Profil
 
 		this.panelProfil.setBounds(140, 110, 600, 340);
-		this.panelProfil.setLayout(new GridLayout(10, 2));
+		this.panelProfil.setLayout(new GridLayout(11, 2));
 
 		Component Nom = this.panelProfil.add(new JLabel("Nom :"));
+		this.tfNom.setText(unProfil.getNom());
 		this.panelProfil.add(this.tfNom);
 
 		Component Prenom = this.panelProfil.add(new JLabel("Prenom :"));
+		this.tfPrenom.setText(unProfil.getPrenom());
 		this.panelProfil.add(this.tfPrenom);
 
-		Component Age = this.panelProfil.add(new JLabel("Age :"));
-		this.panelProfil.add(this.cbxAge);
+		Component SexeP = this.panelProfil.add(new JLabel("Sexe :"));
+		this.tfSexeP.setText(unProfil.getSexe());
+		this.panelProfil.add(this.tfSexeP);
+
+		Component DateNaiss = this.panelProfil.add(new JLabel("date de naissance :"));
+		this.tfDateNaiss.setText(unProfil.getDatenaiss());
+		this.panelProfil.add(this.tfDateNaiss);
 
 		Component Tel = this.panelProfil.add(new JLabel("Tel :"));
+		this.tfTel.setText(unProfil.getTel());
 		this.panelProfil.add(this.tfTel);
 
-		Component NbEnfant = this.panelProfil.add(new JLabel("Nombre d'enfant :"));
-		this.panelProfil.add(this.cbxNbrEnfant);
-
 		Component Adresse = this.panelProfil.add(new JLabel("Adresse :"));
+		this.tfAdresse.setText(unProfil.getAdresse());
 		this.panelProfil.add(this.tfAdresse);
 
 		Component Ville = this.panelProfil.add(new JLabel("Ville :"));
+		this.tfVille.setText(unProfil.getVille());
 		this.panelProfil.add(this.tfVille);
 
 		Component CP = this.panelProfil.add(new JLabel("Code Postal :"));
+		this.tfCP.setText(unProfil.getCp());
 		this.panelProfil.add(this.tfCP);
+
+		Component Email = this.panelProfil.add(new JLabel("Email :"));
+		this.tfEmail.setText(unProfil.getEmail());
+		this.panelProfil.add(this.tfEmail);
+		this.tfEmail.setEditable(false);
 
 		this.panelProfil.add(new JLabel(""));
 		this.panelProfil.add(new JLabel(""));
@@ -249,14 +264,14 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Font prenom = new Font("Arial", Font.BOLD, 18);
 		Prenom.setFont(prenom);
 
-		Font age = new Font("Arial", Font.BOLD, 18);
-		Age.setFont(age);
+		Font sexe = new Font("Arial", Font.BOLD, 18);
+		SexeP.setFont(sexe);
+
+		Font dateNaiss = new Font("Arial", Font.BOLD, 18);
+		DateNaiss.setFont(dateNaiss);
 
 		Font tel = new Font("Arial", Font.BOLD, 18);
 		Tel.setFont(tel);
-
-		Font nbenfant = new Font("Arial", Font.BOLD, 18);
-		NbEnfant.setFont(nbenfant);
 
 		Font adresse = new Font("Arial", Font.BOLD, 18);
 		Adresse.setFont(adresse);
@@ -266,6 +281,9 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		Font cp = new Font("Arial", Font.BOLD, 18);
 		CP.setFont(cp);
+
+		Font email = new Font("Arial", Font.BOLD, 18);
+		Email.setFont(email);
 
 		Font validerP = new Font("Arial", Font.BOLD, 15);
 		Valider.setFont(validerP);
@@ -309,8 +327,8 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Font date = new Font("Arial", Font.BOLD, 18);
 		DateE.setFont(date);
 
-		Font sexe = new Font("Arial", Font.BOLD, 18);
-		Sexe.setFont(sexe);
+		Font sexeE = new Font("Arial", Font.BOLD, 18);
+		Sexe.setFont(sexeE);
 
 		Font validerE = new Font("Arial", Font.BOLD, 15);
 		ValiderE.setFont(validerE);
@@ -325,17 +343,17 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelCantine.setBounds(140, 110, 600, 340);
 		this.panelCantine.setLayout(new GridLayout(6, 2));
 
-		Component Date = this.panelCantine.add(new JLabel("Date :"));
-		this.panelCantine.add(this.cbxDate);
-
-		Component Tarif = this.panelCantine.add(new JLabel("Tarif :"));
-		this.panelCantine.add(this.cbxTarif);
+		Component DateDeb = this.panelCantine.add(new JLabel("Date debut :"));
+		this.panelCantine.add(this.cbxDateDebC);
+		
+		Component DateFin = this.panelCantine.add(new JLabel("Date fin :"));
+		this.panelCantine.add(this.cbxDateFinC);
 
 		Component NbenfantC = this.panelCantine.add(new JLabel("Nombre d'enfants :"));
-		this.panelCantine.add(this.cbxNbrEnfants);
+		this.panelCantine.add(this.cbxNbrEnfantsC);
 
 		Component Etab = this.panelCantine.add(new JLabel("Etablissement :"));
-		this.panelCantine.add(this.tfEtablissement);
+		this.panelCantine.add(this.cbxEtabC);
 
 		this.panelCantine.add(new JLabel(""));
 		this.panelCantine.add(new JLabel(""));
@@ -344,11 +362,11 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Component AnnulerC = this.panelCantine.add(this.btAnnulerC);
 
 		// gère la police, taille...
-		Font dateC = new Font("Arial", Font.BOLD, 18);
-		Date.setFont(dateC);
-
-		Font tarif = new Font("Arial", Font.BOLD, 18);
-		Tarif.setFont(tarif);
+		Font dateDebC = new Font("Arial", Font.BOLD, 18);
+		DateDeb.setFont(dateDebC);
+		
+		Font dateFinC = new Font("Arial", Font.BOLD, 18);
+		DateFin.setFont(dateFinC);
 
 		Font nbenfantC = new Font("Arial", Font.BOLD, 18);
 		NbenfantC.setFont(nbenfantC);
@@ -367,25 +385,16 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		// construction du panel CentreLoisirs
 		this.panelCentreLoisirs.setBounds(140, 110, 600, 340);
-		this.panelCentreLoisirs.setLayout(new GridLayout(8, 2));
+		this.panelCentreLoisirs.setLayout(new GridLayout(5, 2));
 
-		Component EtabCL = this.panelCentreLoisirs.add(new JLabel("Etablissement :"));
-		this.panelCentreLoisirs.add(this.tfEtablissementCL);
+		Component CentreCL = this.panelCentreLoisirs.add(new JLabel("Centre :"));
+		this.panelCentreLoisirs.add(this.cbxCentreCL);
 
-		Component DateCL = this.panelCentreLoisirs.add(new JLabel("Date :"));
-		this.panelCentreLoisirs.add(this.cbxDateCL);
+		Component DateDebCL = this.panelCentreLoisirs.add(new JLabel("Date début :"));
+		this.panelCentreLoisirs.add(this.cbxDateDebCL);
 
-		Component NbenfantCL = this.panelCentreLoisirs.add(new JLabel("Nombre d'enfants :"));
-		this.panelCentreLoisirs.add(this.tfNbrEnfantsCL);
-
-		Component Capacite = this.panelCentreLoisirs.add(new JLabel("Capacite :"));
-		this.panelCentreLoisirs.add(this.tfCapacite);
-
-		Component Region = this.panelCentreLoisirs.add(new JLabel("Region :"));
-		this.panelCentreLoisirs.add(this.tfRegion);
-
-		Component TarifCL = this.panelCentreLoisirs.add(new JLabel("Tarif :"));
-		this.panelCentreLoisirs.add(this.cbxTarifCL);
+		Component DateFinCL = this.panelCentreLoisirs.add(new JLabel("date fin :"));
+		this.panelCentreLoisirs.add(this.cbxDateFinCL);
 
 		this.panelCentreLoisirs.add(new JLabel(""));
 		this.panelCentreLoisirs.add(new JLabel(""));
@@ -394,23 +403,14 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		Component AnnulerCL = this.panelCentreLoisirs.add(this.btAnnulerCL);
 
 		// gère la police, taille...
-		Font etabCL = new Font("Arial", Font.BOLD, 18);
-		EtabCL.setFont(etabCL);
+		Font centreCL = new Font("Arial", Font.BOLD, 18);
+		CentreCL.setFont(centreCL);
 
-		Font dateCL = new Font("Arial", Font.BOLD, 18);
-		DateCL.setFont(dateCL);
-
-		Font nbenfantCL = new Font("Arial", Font.BOLD, 18);
-		NbenfantCL.setFont(nbenfantCL);
-
-		Font capaciteCL = new Font("Arial", Font.BOLD, 18);
-		Capacite.setFont(capaciteCL);
-
-		Font region = new Font("Arial", Font.BOLD, 18);
-		Region.setFont(region);
-
-		Font tarifCL = new Font("Arial", Font.BOLD, 18);
-		TarifCL.setFont(tarifCL);
+		Font dateDebCL = new Font("Arial", Font.BOLD, 18);
+		DateDebCL.setFont(dateDebCL);
+		
+		Font dateFinCL = new Font("Arial", Font.BOLD, 18);
+		DateFinCL.setFont(dateFinCL);
 
 		Font validerCL = new Font("Arial", Font.BOLD, 15);
 		ValiderCL.setFont(validerCL);
@@ -441,7 +441,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			this.panelEnfant.setVisible(true);
 			this.panelCantine.setVisible(false);
 			this.panelCentreLoisirs.setVisible(false);
-			
+
 		} else if (e.getSource() == this.btCantine) {
 			this.panelProfil.setVisible(false);
 			this.panelEnfant.setVisible(false);
@@ -464,6 +464,24 @@ public class VuePrincipale extends JFrame implements ActionListener {
 			this.tfAdresse.setText("");
 			this.tfCP.setText("");
 			this.tfVille.setText("");
+			this.tfEmail.setText("");
+			this.tfSexeP.setText("");
+			this.tfDateNaiss.setText("");
+
+		} else if (e.getSource() == this.btValider) {
+			String nom = this.tfNom.getText();
+			String prenom = tfPrenom.getText();
+			String datenaiss = tfDateNaiss.getText();
+			String sexe = tfSexeP.getText();
+			String adresse = tfAdresse.getText();
+			String cp = tfCP.getText();
+			String ville = tfVille.getText();
+			String tel = tfTel.getText();
+			String email = tfEmail.getText();
+
+			Profil unProfil = new Profil(nom, prenom, adresse, sexe, ville, email, datenaiss, tel, cp);
+
+			ModeleUser.update(unProfil);
 
 		}
 
@@ -477,24 +495,7 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 		}
 
-		// permet de faire marcher le bouton annuler dans Cantine (efface le
-		// contenu)
-		else if (e.getSource() == this.btAnnulerC) {
-			this.tfEtablissement.setText("");
-
-		}
-
-		// permet de faire marcher le bouton annuler dans Centre de loisirs
-		// (efface le
-		// contenu)
-		else if (e.getSource() == this.btAnnulerCL) {
-			this.tfNbrEnfantsCL.setText("");
-			this.tfEtablissementCL.setText("");
-			this.tfRegion.setText("");
-			this.tfCapacite.setText("");
-
-		}
-
+		
 		// permet de faire marcher le bouton quitter
 		else if (e.getSource() == this.btQuitter) {
 
