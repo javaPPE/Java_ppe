@@ -103,10 +103,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 
 	// construction des objets du panel Enfant
 
-	private JTextField tfNomE = new JTextField();
-	private JTextField tfPrenomE = new JTextField();
-	private JTextField tfDate = new JTextField();
-	private JTextField tfSexe = new JTextField();
+	private JComboBox cbxNomE = new JComboBox();
+	private JComboBox cbxPrenomE = new JComboBox();
+	private JComboBox cbxDate = new JComboBox();
+	private JComboBox cbxSexe = new JComboBox();
 	private JButton btAnnulerE = new JButton("Annuler");
 	private JButton btValiderE = new JButton("Valider");
 
@@ -299,16 +299,16 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		this.panelEnfant.setLayout(new GridLayout(6, 2));
 
 		Component NomE = this.panelEnfant.add(new JLabel("Nom :"));
-		this.panelEnfant.add(this.tfNomE);
+		this.panelEnfant.add(this.cbxNomE);
 
 		Component PrenomE = this.panelEnfant.add(new JLabel("Prenom :"));
-		this.panelEnfant.add(this.tfPrenomE);
+		this.panelEnfant.add(this.cbxPrenomE);
 
 		Component DateE = this.panelEnfant.add(new JLabel("Date :"));
-		this.panelEnfant.add(this.tfDate);
+		this.panelEnfant.add(this.cbxDate);
 
 		Component Sexe = this.panelEnfant.add(new JLabel("Sexe :"));
-		this.panelEnfant.add(this.tfSexe);
+		this.panelEnfant.add(this.cbxSexe);
 
 		this.panelEnfant.add(new JLabel(""));
 		this.panelEnfant.add(new JLabel(""));
@@ -488,10 +488,10 @@ public class VuePrincipale extends JFrame implements ActionListener {
 		// permet de faire marcher le bouton annuler dans Enfant (efface le
 		// contenu)
 		else if (e.getSource() == this.btAnnulerE) {
-			this.tfNomE.setText("");
-			this.tfPrenomE.setText("");
-			this.tfDate.setText("");
-			this.tfSexe.setText("");
+			this.cbxNomE.getSelectedItem();
+			this.cbxPrenomE.getSelectedItem();
+			this.cbxDate.getSelectedItem();
+			this.cbxSexe.getSelectedItem();
 
 		}
 

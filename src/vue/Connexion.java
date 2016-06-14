@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import controleur.Enfant;
 import controleur.Profil;
 import modele.ModeleUser;
 
@@ -165,6 +166,8 @@ public class Connexion extends JFrame implements ActionListener, KeyListener {
 					// lancement du menu
 					Profil unProfil = ModeleUser.selectWhereProfil(login, this.mdpToSha1(mdp));
 					new VuePrincipale(unProfil);
+					
+					
 
 				}
 			}
