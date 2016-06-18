@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import controleur.Enfant;
 import controleur.Profil;
 import modele.ModeleUser;
 

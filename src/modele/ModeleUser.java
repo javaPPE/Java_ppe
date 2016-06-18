@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import controleur.Enfant;
 import controleur.Profil;
 
 public class ModeleUser {
@@ -99,36 +98,6 @@ public class ModeleUser {
 
 	}
 	
-//	// permet d'afficher les infos de l'enfant
-//	public static Enfant selectWhereEnfant(String login, String mdp) {
-//		
-//		String[] tab = new String[2];
-//		BDD uneBDD = new BDD("localhost", "MairieDeVilliers", "root", "");
-//		uneBDD.chargerPilote();
-//		uneBDD.seConnecter();
-//		Enfant unEnfant = null;
-//		String requete = "select * from enfants where login ='" + login + "' and Mot_de_Passe ='" + mdp + "';";
-//		try {
-//			Statement unStat = uneBDD.getMaconnexion().createStatement();
-//			ResultSet unRes = unStat.executeQuery(requete);
-//			unRes.next();
-//
-//			String nom = unRes.getString("NOM");
-//			String prenom = unRes.getString("PRENOM");
-//			String dateE = unRes.getDate("DATEN").toString();
-//			String sexe = unRes.getString("SEXE");
-//			
-//
-//			unEnfant = new Enfant(nom, prenom,dateE, sexe );
-//
-//			unStat.close();
-//			unRes.close();
-//		} catch (SQLException exp) {
-//			System.out.println("Erreur d'execution :" + requete);
-//		}
-//
-//		uneBDD.seDeconnecter();
-//		return unEnfant;
-//	}
+
 
 }
